@@ -1,9 +1,17 @@
 # Languagetool Docker
 
-Docker image for the [languagetool http server](http://wiki.languagetool.org/http-server).
+Dockerfile contains instructions to build a preconfigured image of the 
+[languagetool http server](http://wiki.languagetool.org/http-server).
 
-## How to use 
+# How To Use
 
 ```
-docker run -p 8010:8010 gentics/languagetool
+docker build -t langugagetool .
+docker run -d -p 8081:8081 languagetool:latest
 ```
+
+# Credits
+
+The Dockerfile is based on
+[gentics/languagetool-docker](https://github.com/gentics/languagetool-docker).
+Thanks for sharing!

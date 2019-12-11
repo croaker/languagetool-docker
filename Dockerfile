@@ -6,13 +6,30 @@ RUN set -ex \
     && apt-get clean \
     && apt-get update -y \
     && apt-get install -y \
-        bash \
+        build-essential \
         openjdk-8-jre-headless \
         unzip \
         libhunspell-1.4-0 \
-        hunspell-de-at
+        hunspell-de-at \
+        python-dev \
+        python-numpy \
+        python-scipy \
+        libgomp1
 
-ENV VERSION 3.7
+
+RUN mkdir fastText 
+WORKDIR /fastText
+
+ENV FASTTEXT_VERSION 0.9.1
+
+ADD https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin .
+ADD https://github.com/facebookresearch/fastText/archive/v$FASTTEXT_VERSION.tar.gz fasttext.tar.gz
+RUN tar xzf fasttext.tar.gz --strip-components=1 \
+    && make
+
+WORKDIR /
+
+ENV VERSION 4.7
 ADD https://www.languagetool.org/download/LanguageTool-$VERSION.zip /LanguageTool-$VERSION.zip
 
 RUN unzip LanguageTool-$VERSION.zip \
@@ -20,6 +37,7 @@ RUN unzip LanguageTool-$VERSION.zip \
 
 WORKDIR /LanguageTool-$VERSION
 
-CMD ["java", "-cp", "languagetool-server.jar", "org.languagetool.server.HTTPServer", "--port", "8010", "--public" ]
-EXPOSE 8010
+ADD server.properties .
 
+CMD ["java", "-cp", "languagetool-server.jar", "org.languagetool.server.HTTPServer", "--public", "--allow-origin", "*", "--config", "server.properties"]
+EXPOSE 8081
