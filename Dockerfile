@@ -9,8 +9,7 @@ RUN set -ex \
         build-essential \
         openjdk-8-jre-headless \
         unzip \
-        libhunspell-1.4-0 \
-        hunspell-de-at \
+        libhunspell-dev \
         python-dev \
         python-numpy \
         python-scipy \
