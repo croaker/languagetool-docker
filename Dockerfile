@@ -28,7 +28,7 @@ RUN tar xzf fasttext.tar.gz --strip-components=1 \
 
 WORKDIR /
 
-ENV VERSION 4.7
+ENV VERSION 5.0
 ADD https://www.languagetool.org/download/LanguageTool-$VERSION.zip /LanguageTool-$VERSION.zip
 
 RUN unzip LanguageTool-$VERSION.zip \
