@@ -6,7 +6,7 @@ Dockerfile contains instructions to build a preconfigured image of the
 # How To Use
 
 ```
-docker build -t langugagetool .
+docker build -t languagetool .
 docker run -d -p 8081:8081 languagetool:latest
 ```
 
