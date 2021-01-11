@@ -19,7 +19,7 @@ RUN set -ex \
 RUN mkdir fastText 
 WORKDIR /fastText
 
-ENV FASTTEXT_VERSION 0.9.1
+ENV FASTTEXT_VERSION 0.9.2
 
 ADD https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin .
 ADD https://github.com/facebookresearch/fastText/archive/v$FASTTEXT_VERSION.tar.gz fasttext.tar.gz
